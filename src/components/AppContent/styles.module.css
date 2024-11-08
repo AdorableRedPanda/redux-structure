@@ -16,6 +16,7 @@
 }
 
 .content {
+	position: relative;
 	flex: 1;
 
 	display: grid;
@@ -43,4 +44,12 @@
 	&.show_devtools.show_history {
 		grid-template-columns: 3fr var(--devtools-width) var(--histry-width);
 	}
+}
+
+.create {
+	position: absolute;
+	left: 0;
+	top: 0;
+	z-index: 1;
+	padding: 10px;
 }

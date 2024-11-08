@@ -8,7 +8,8 @@ import { useCreateNode } from '@/store/client';
 import { Project } from '../Project';
 import { useState } from 'react';
 import { clsJoin } from '@/utils';
-import { HeaderActions } from '../HeaderActions';
+import { LayoutToggles } from '../LayoutToggles';
+import { Button } from '@/components/Button';
 
 export const AppContent: React.FC = () => {
 	const createNode = useCreateNode();
@@ -24,10 +25,9 @@ export const AppContent: React.FC = () => {
 	return (
 		<div className={css.container}>
 			<AppHeader>
-				<HeaderActions
+				<LayoutToggles
 					history={showHistory}
 					devtools={showDevtools}
-					onCreate={createNode}
 					setHistory={setShowHistory}
 					setDevtools={setShowDevtools}
 				/>
@@ -36,6 +36,13 @@ export const AppContent: React.FC = () => {
 				<Project />
 				<DevTools />
 				<History />
+				<div className={css.create}>
+					<Button
+						title="Create new node"
+						label="New node"
+						onClick={createNode}
+					/>
+				</div>
 			</div>
 		</div>
 	);

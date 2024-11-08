@@ -3,66 +3,86 @@ import type { ProjectStore } from '@/types';
 export const InitialStore: ProjectStore = {
 	nodes: [
 		{
-			value: '1st node',
-			id: '9bb34399-a031-4a1d-9592-061c3c69153c',
+			value: 'new node a754e...',
+			id: 'a754e999-d323-4057-b40d-1e382dc34996',
 			parent: null,
-			children: ['0d63ada5-df4e-4131-a0b8-cce5aa577dec'],
-			position: {
-				x: 45,
-				y: 59,
-			},
-		},
-		{
-			value: '2nd node',
-			id: '0d63ada5-df4e-4131-a0b8-cce5aa577dec',
-			parent: '9bb34399-a031-4a1d-9592-061c3c69153c',
 			children: [
-				'1b8a2db0-8dca-4ff9-b374-69be3adf8d89',
-				'144ebe19-8dd5-4d65-b6c9-4e5c7c3e1f89',
+				'7ff0f02a-b13a-403c-995e-cf2837141472',
+				'894ad2a4-7a61-43b2-be92-59e5fbe1faf5',
 			],
 			position: {
-				x: 46,
-				y: 359,
+				x: 35,
+				y: 113,
 			},
 		},
 		{
-			value: 'dependent node',
-			id: '144ebe19-8dd5-4d65-b6c9-4e5c7c3e1f89',
-			parent: '0d63ada5-df4e-4131-a0b8-cce5aa577dec',
+			value: 'new node 1ef41...',
+			id: '7ff0f02a-b13a-403c-995e-cf2837141472',
+			parent: 'a754e999-d323-4057-b40d-1e382dc34996',
 			children: [],
 			position: {
-				x: 44,
-				y: 635,
+				x: 37,
+				y: 340,
 			},
 		},
 		{
-			value: '123',
-			id: '1b014eb6-c3c8-4ee8-aec4-6f759ef39730',
+			value: 'new node 1f504...',
+			id: '1f504272-4f9c-4215-99ff-e977758a76d4',
 			parent: null,
 			children: [],
 			position: {
-				x: 384,
-				y: 50,
+				x: 38,
+				y: 581,
 			},
 		},
 		{
-			value: '',
-			id: '349813e4-f049-4108-9a20-c0f07c5969bb',
-			parent: '1b8a2db0-8dca-4ff9-b374-69be3adf8d89',
+			value: 'new node 6ba36...',
+			id: 'afd1cf58-0d76-4dcf-87cf-a9b6e1673e3b',
+			parent: '894ad2a4-7a61-43b2-be92-59e5fbe1faf5',
+			children: ['07aec5be-be9e-40c4-b410-33dff91b0cfd'],
+			position: {
+				x: 750,
+				y: 110,
+			},
+		},
+		{
+			value: 'new node c0c01...',
+			id: '894ad2a4-7a61-43b2-be92-59e5fbe1faf5',
+			parent: 'a754e999-d323-4057-b40d-1e382dc34996',
+			children: ['afd1cf58-0d76-4dcf-87cf-a9b6e1673e3b'],
+			position: {
+				x: 384,
+				y: 60,
+			},
+		},
+		{
+			value: 'new node f9085...',
+			id: 'f9085b85-6865-46c5-8dbe-49240e6646f3',
+			parent: null,
+			children: ['35ae85a0-8274-4d2c-b821-c6482cc8bfa3'],
+			position: {
+				x: 386,
+				y: 317,
+			},
+		},
+		{
+			value: 'new node c3ab8...',
+			id: '35ae85a0-8274-4d2c-b821-c6482cc8bfa3',
+			parent: 'f9085b85-6865-46c5-8dbe-49240e6646f3',
 			children: [],
 			position: {
-				x: 427,
-				y: 664,
+				x: 386,
+				y: 607,
 			},
 		},
 		{
-			value: '',
-			id: '1b8a2db0-8dca-4ff9-b374-69be3adf8d89',
-			parent: '0d63ada5-df4e-4131-a0b8-cce5aa577dec',
-			children: ['349813e4-f049-4108-9a20-c0f07c5969bb'],
+			value: 'new node f6650...',
+			id: '07aec5be-be9e-40c4-b410-33dff91b0cfd',
+			parent: 'afd1cf58-0d76-4dcf-87cf-a9b6e1673e3b',
+			children: [],
 			position: {
-				x: 465,
-				y: 365,
+				x: 727,
+				y: 332,
 			},
 		},
 	],
@@ -70,24 +90,31 @@ export const InitialStore: ProjectStore = {
 		newEdgeSource: null,
 		edges: [
 			{
-				id: '7bc9412d-10db-4d00-be13-7a62fdb229ee',
+				id: 'f51ebf30-66fc-43fe-977d-5d41ddabb7d8',
 				relation: [
-					'1b8a2db0-8dca-4ff9-b374-69be3adf8d89',
-					'144ebe19-8dd5-4d65-b6c9-4e5c7c3e1f89',
+					'f9085b85-6865-46c5-8dbe-49240e6646f3',
+					'894ad2a4-7a61-43b2-be92-59e5fbe1faf5',
 				],
 			},
 			{
-				id: '255eac7f-0a88-471c-8860-d2c9a2b82d05',
+				id: 'a5fae126-2392-4b2b-bafa-e825d3a6b7c8',
 				relation: [
-					'1b8a2db0-8dca-4ff9-b374-69be3adf8d89',
-					'9bb34399-a031-4a1d-9592-061c3c69153c',
+					'f9085b85-6865-46c5-8dbe-49240e6646f3',
+					'7ff0f02a-b13a-403c-995e-cf2837141472',
 				],
 			},
 			{
-				id: '8c704eeb-f311-4401-a798-975092c1a1a7',
+				id: 'bf643753-d587-4080-ae32-c78ff13ae21e',
 				relation: [
-					'1b014eb6-c3c8-4ee8-aec4-6f759ef39730',
-					'1b8a2db0-8dca-4ff9-b374-69be3adf8d89',
+					'1f504272-4f9c-4215-99ff-e977758a76d4',
+					'7ff0f02a-b13a-403c-995e-cf2837141472',
+				],
+			},
+			{
+				id: '9c9ac1c0-6500-420d-86fa-29fbb5bd7524',
+				relation: [
+					'1f504272-4f9c-4215-99ff-e977758a76d4',
+					'35ae85a0-8274-4d2c-b821-c6482cc8bfa3',
 				],
 			},
 		],

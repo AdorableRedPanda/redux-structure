@@ -19,3 +19,5 @@ export const store = configureStore({
 });
 sagaMiddleware.run(rootMiddleware);
 sagaMiddleware.run(historySagas);
+
+store.subscribe(() => console.log(store.getState().project));
