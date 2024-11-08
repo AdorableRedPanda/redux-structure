@@ -1,8 +1,8 @@
 import type React from 'react';
 import { useGetEdges, useNodesDependencies } from '@/store/client';
-
-import { Arrow } from '../Arrow';
 import { getRelationKey } from '@/utils';
+import { Edge } from '../Edge';
+import { Dependency } from '@/components/Dependency';
 
 export const Edges: React.FC = () => {
 	const edges = useGetEdges();
@@ -11,19 +11,10 @@ export const Edges: React.FC = () => {
 	return (
 		<>
 			{dependencies.map((rel) => (
-				<Arrow
-					directed
-					color="var(--color-edge-dependency)"
-					relation={rel}
-					key={getRelationKey(rel)}
-				/>
+				<Dependency relation={rel} key={getRelationKey(rel)} />
 			))}
 			{edges.map((e) => (
-				<Arrow
-					color="var(--color-edge-relation)"
-					relation={e.relation}
-					key={e.id}
-				/>
+				<Edge edge={e} key={e.id} />
 			))}
 		</>
 	);

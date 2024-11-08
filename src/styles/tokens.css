@@ -10,8 +10,8 @@
 	--color-atom-bg-hover: #ffffff;
 	--color-atom-text: #3a4a5a;
 
-	--color-edge-relation: #6f85a2;
-	--color-edge-dependency: #88797e;
+	--color-arrow-edge: #9faab6;
+	--color-arrow-edge-hover: rgba(145, 60, 60, 0.71);
 
 	--color-history-bg: #2c2c2c;
 	--color-history-text: #e2ebf3;

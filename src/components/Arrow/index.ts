@@ -1,2 +1,1 @@
-export { Arrow } from './Arrow';
-export { useXarrow, Xwrapper } from 'react-xarrows';
+export { useXarrow, Xwrapper, default as Arrow } from 'react-xarrows';

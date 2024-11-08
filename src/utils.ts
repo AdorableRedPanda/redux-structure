@@ -7,14 +7,17 @@ export const isEqual = (p1: Position, p2: Position) =>
 
 export const newID = (): ID => crypto.randomUUID();
 
-export const newNode = (partial: Partial<GNode>): GNode => ({
-	value: '',
-	id: newID(),
-	parent: null,
-	children: [],
-	position: { x: 520, y: 520 },
-	...partial,
-});
+export const newNode = (partial: Partial<GNode>): GNode => {
+	const id = newID();
+	return ({
+		value: `new node ${id.slice(0, 5)}...`,
+		id,
+		parent: null,
+		children: [],
+		position: { x: 520, y: 520 },
+		...partial,
+	});
+}
 
 export const getDependents = (nodes: GNode[], id: ID): ID[] => {
 	const set = new Set([id]);
