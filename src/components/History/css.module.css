@@ -1,0 +1,12 @@
+.history {
+	padding: 0 20px;
+	background: var(--color-history-bg);
+	color: var(--color-history-text);
+
+	height: 100%;
+	overflow: hidden;
+
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}

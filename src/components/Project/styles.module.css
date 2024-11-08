@@ -1,0 +1,5 @@
+.project {
+	height: 100%;
+	background: var(--color-project-bg);
+	position: relative;
+}

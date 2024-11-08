@@ -1,0 +1,32 @@
+{
+  "javascript": {
+    "formatter": {
+      "quoteStyle": "single",
+      "jsxQuoteStyle": "double"
+    }
+  },
+  "linter": {
+    "rules": {
+      "complexity": {
+        "noForEach": "off"
+      },
+      "correctness": {
+        "noUnusedImports": {
+          "level": "error"
+        }
+      }
+    }
+  },
+  "css": {
+    "parser": {
+      "cssModules": true
+    }
+  },
+  "assists": {
+	  "actions": {
+		  "source": {
+			  "sortJsxProps": "on"
+		  }
+	  }
+  }
+}

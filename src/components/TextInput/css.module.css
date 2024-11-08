@@ -1,0 +1,15 @@
+.input {
+	padding: 5px;
+
+	width: 100%;
+
+	background: var(--color-atom-bg);
+	border: none;
+
+	border-bottom: 1px solid var(--color-atom-border);
+
+	&:focus {
+		background: var(--color-atom-bg-focus);
+		outline: none;
+	}
+}

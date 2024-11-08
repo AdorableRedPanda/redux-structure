@@ -1,0 +1,1 @@
+export { nodeRelations } from './nodeRelations';

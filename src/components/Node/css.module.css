@@ -1,0 +1,43 @@
+.node {
+	cursor: grab;
+	align-items: center;
+	display: flex;
+	flex-direction: column;
+	width: 200px;
+	gap: 15px;
+	padding: 12px;
+	border-radius: 12px;
+	border: 1px solid var(--color-node-border);
+	position: absolute;
+	background: var(--color-node-bg);
+
+	z-index: 1;
+
+	.children {
+		display: flex;
+		gap: 5px;
+	}
+
+	.child {
+		border: 1px solid slategray;
+		padding: 2px;
+	}
+	.actions {
+		width: 100%;
+		align-items: center;
+		display: flex;
+		justify-content: flex-end;
+		gap: 5px;
+	}
+
+	.value {
+		align-items: center;
+		display: flex;
+		width: 100%;
+		gap: 10px;
+	}
+
+	.input {
+		flex: 1;
+	}
+}

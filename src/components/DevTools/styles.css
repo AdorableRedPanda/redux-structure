@@ -1,0 +1,4 @@
+div[data-testid="inspector"] {
+	height: 100%;
+	overflow: auto;
+}

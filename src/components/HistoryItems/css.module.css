@@ -1,0 +1,6 @@
+.items {
+	padding: 20px;
+	flex: 1;
+
+	overflow: auto;
+}

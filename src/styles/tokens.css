@@ -1,0 +1,21 @@
+:root {
+	--color-node-bg: #f4f8ff;
+	--color-node-border: #acbdd3;
+	--color-node-text: #3a4a5a;
+	--color-node-icon: #5a8bb0;
+
+	--color-atom-border: #9aa5b1;
+	--color-atom-bg-focus: #ffffff;
+	--color-atom-bg: #f3f7fbe6;
+	--color-atom-bg-hover: #ffffff;
+	--color-atom-text: #3a4a5a;
+
+	--color-edge-relation: #6f85a2;
+	--color-edge-dependency: #88797e;
+
+	--color-history-bg: #2c2c2c;
+	--color-history-text: #e2ebf3;
+
+	--color-project-bg: #f5f5f8;
+	--color-header-bg: #dddde8;
+}
