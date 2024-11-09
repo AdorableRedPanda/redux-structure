@@ -4,6 +4,7 @@
 
 This repository presents an example structure of the client-side part of an application for collaborative data editing. 
 The main goal is to demonstrate the approach to the codebase and the use of `Redux`.
+[Demo](https://adorableredpanda.github.io/redux-structure-demo/)
 
 ## Main requirements
 
