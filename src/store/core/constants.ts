@@ -41,7 +41,7 @@ export const InitialStore: ProjectStore = {
 			parent: '894ad2a4-7a61-43b2-be92-59e5fbe1faf5',
 			children: ['07aec5be-be9e-40c4-b410-33dff91b0cfd'],
 			position: {
-				x: 750,
+				x: 650,
 				y: 110,
 			},
 		},
@@ -81,8 +81,8 @@ export const InitialStore: ProjectStore = {
 			parent: 'afd1cf58-0d76-4dcf-87cf-a9b6e1673e3b',
 			children: [],
 			position: {
-				x: 727,
-				y: 332,
+				x: 650,
+				y: 300,
 			},
 		},
 	],
