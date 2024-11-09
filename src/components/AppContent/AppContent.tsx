@@ -13,7 +13,7 @@ import { Button } from '@/components/Button';
 
 export const AppContent: React.FC = () => {
 	const createNode = useCreateNode();
-	const [showDevtools, setShowDevtools] = useState(true);
+	const [showDevtools, setShowDevtools] = useState(false);
 	const [showHistory, setShowHistory] = useState(true);
 
 	const className = clsJoin(

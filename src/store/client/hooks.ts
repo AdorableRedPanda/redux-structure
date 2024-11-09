@@ -1,11 +1,15 @@
 import { HistoryCommitAction as Commit } from './history';
 import { useDispatch, useSelector } from 'react-redux';
 import {
+	nodesSelector,
+	relationsSelector,
 	connectionStateSelector,
 	edgesSelector,
-} from '@/store/core/edges/selectors';
+	EdgeActions,
+	NodesActions,
+} from '@/store/core';
+
 import type { ID, Position } from '@/types';
-import { EdgeActions, NodesActions } from '@/store/core';
 
 export const useGetEdges = () => useSelector(edgesSelector);
 
@@ -30,31 +34,24 @@ export const useConnectionActions = (id: ID) => {
 	};
 };
 
-import { HistoryCommitAction } from '@/store/client/history';
-import { nodesSelector, relationsSelector } from '@/store/core/nodes/seletors';
-
 export const useGetNodes = () => useSelector(nodesSelector);
 
 export const useCreateNode = () => {
 	const dispatch = useDispatch();
 
-	return () => dispatch(HistoryCommitAction(NodesActions.addNew()));
+	return () => dispatch(Commit(NodesActions.addNew()));
 };
 
 export const useNodeActions = (id: ID) => {
 	const dispatch = useDispatch();
 
 	return {
-		delete: () =>
-			dispatch(HistoryCommitAction(NodesActions.batchDelete({ id }))),
+		delete: () => dispatch(Commit(NodesActions.batchDelete({ id }))),
 		move: (position: Position) =>
-			dispatch(
-				HistoryCommitAction(NodesActions.updatePosition({ id, position })),
-			),
-		addChild: () =>
-			dispatch(HistoryCommitAction(NodesActions.addChild({ id }))),
+			dispatch(Commit(NodesActions.updatePosition({ id, position }))),
+		addChild: () => dispatch(Commit(NodesActions.addChild({ id }))),
 		updateValue: (value: string) =>
-			dispatch(HistoryCommitAction(NodesActions.updateValue({ id, value }))),
+			dispatch(Commit(NodesActions.updateValue({ id, value }))),
 	};
 };
 

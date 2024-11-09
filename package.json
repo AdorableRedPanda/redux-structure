@@ -1,7 +1,7 @@
 {
   "name": "redux-structure-demo",
   "version": "1.0.0",
-  "description": "Project demonstrates approach to redux structure",
+  "description": "Project demonstrates approach to Redux structure",
   "main": "index.js",
   "scripts": {
     "dev": "vite",
