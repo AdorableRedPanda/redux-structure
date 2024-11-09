@@ -1,27 +1,26 @@
 # redux-structure-demo
 
-## Редактирование графа с версионированием
+## Graph Editing with Version Control
 
-В этом репозитории представлен пример структуры клиентской части приложения для совместного редактирования данных.
-Основная задача - продемонстрировать подход к кодовой базе и использованию `Redux`.
+This repository presents an example structure of the client-side part of an application for collaborative data editing. 
+The main goal is to demonstrate the approach to the codebase and the use of `Redux`.
 
-## Основные требования к приложению
+## Main requirements
 
-1. **Поддержка древовидной структуры данных**
-   - Возможность добавлять и удалять вершины, редактировать их значения.
-   - Возможность добавлять и удалять связи (рёбра) между вершинами.
-   - При удалении вершины также удаляются её дочерние узлы и связанные рёбра.
+1. **Support for tree-like data structure**
+    - Enable adding, deleting, and editing of nodes.
+    - Allow the creation and removal of connections (edges) between nodes.
+    - Deleting a node also removes its child nodes and any associated edges.
 
-2. **Совместное редактирование**
-   - Поддержка одновременного редактирования проекта несколькими пользователями.
-   - Синхронизация изменений между клиентами в реальном времени.
+2. **Collaborative editing**
+    - Support for simultaneous project editing by multiple users.
+    - Real-time synchronization of changes between clients.
 
-3. **Управление историей изменений и версионность**
-   - Сохранение истории всех изменений с возможностью отката.
-   - Возможность вернуться к любой из предыдущих версий проекта.
+3. **Changes history management and versioning**
+    - Saving the history of all changes with the ability to roll back.
+    - Ability to return to the previous version of the project.
 
-Для простоты примера, редактируемый проект представлен в виде объекта следующего типа:
-
+For simplicity, the editable project is represented as an object of the following type:
 ```typescript
 interface Project {
     nodes: Node[];
@@ -46,43 +45,41 @@ export interface Edge {
     relation: [ID, ID];
 }
 ```
-## Redux как менеджер состояния проекта
+## State manager
 
-Для работы с данными можно использовать любой state-менеджер, реализующий Flux-архитектуру, однако в данном примере используется **Redux**.
+Any state manager implementing the Flux architecture can be used for data handling, but in this example, **Redux** is used.
+- **Collaborative editing** is simplified through the use of serializable actions, which can be easily transmitted over the network.
+- **History management** is achieved by saving state snapshots and user actions in a database.
 
-- **Совместное редактирование** упрощается за счёт сериализуемых экшенов, которые могут легко передаваться по сети.
-- **Управление историей изменений** реализуется сохранением снапшотов состояния и экшенов, соответствующих действиям пользователей, в базе данных.
+## Project store structure
+The project logic is implemented in the `/src/store/core` folder. The core of the application exports only:
 
-## Структура стора проекта
+- the project reducer,
+- saga,
+- selectors.
 
-Логика работы с проектом реализована в папке `/src/store/core`. Ядро приложения экспортирует только:
+The `/src/store/core` folder **does not contain any information about the client or backend**, which allows the code to
+be cross-platform — it can be used both on the frontend and the backend.
 
-- редьюсер проекта,
-- сагу,
-- селекторы.
+For example, the /src/store/client and /src/store/server folders implement their own versions of stores adapted for various tasks.
 
-Папка `/src/store/core` **не содержит никакой информации о клиенте или бэкенде**, что позволяет коду быть 
-кроссплатформенным — его можно запускать как на фронтенде, так и на бэкенде.
+## Redux usage conventions
 
-Для примера, в папках `/src/store/client` и `/src/store/server` реализованы свои версии сторов, адаптированные для 
-различных задач.
+- Each reducer is responsible for managing a **single** field (`nodes` or `edges`). There are no
+shared reducers.
+- **Sagas** are used to implement connections between stores.
+- Each action is processed by a **single handler** — either a saga or a reducer.
+- **Minimal payload** is used for actions — only the entity's `id`, without passing entire objects.
+- Each saga is responsible for implementing a specific relation between different stores.
 
-## Ограничения использования Redux
+### Example
+A complex action, such as deleting a node, requires:
 
-- **Независимые редьюсеры**: каждый редьюсер работает только с одним полем (`nodes` или `edges`). Shared редьюсеры отсутствуют.
-- Для реализации связей между сторами используются **саги**.
-- Каждый экшен обрабатывается единственным обработчиком — либо сагой, либо редьюсером.
-- Для экшенов используется **минимальный payload** — только `id` сущности, без передачи целых объектов.
-- Каждая сага решает конкретную задачу по реализации связи между сторами.
+- deleting the node itself from the store,
+- deleting the edges associated with it,
+- deleting child nodes.
 
-### Пример
-Сложное действие, например, удаление ноды, требует:
-- удаления самой ноды из стора,
-- удаления связанных с ней рёбер,
-- удаления дочерних нод.
-
-Пример саги, реализующей это:
-
+An example of a saga implementing this:
 ```typescript
 function* deleteNode({ payload: { id  } }) {
    const nodes: Node[] = yield select(nodesSelector);
@@ -93,26 +90,25 @@ function* deleteNode({ payload: { id  } }) {
 }
 ```
 
-## Структура фронтенд-приложения
+## Frontend application structure
 
-Ранее я уже описывал в статье [DI in React](https://github.com/AdorableRedPanda/di-react-redux) некоторые сложности,
-возникающие при использовании `Redux` в `React` компонентах. Это приложение можно рассматривать как пример изоляции 
-использования стора от `React` компонентов.
+Previously, in the article [DI in React](https://github.com/AdorableRedPanda/di-react-redux), I described some challenges
+that arise when using `Redux` in `React` components. This application can be considered an example of isolating the use
+of the store from `React` components.
 
-Клиентская реализация стора описана в `/src/store/client`. Поскольку это демо-проект, для сохранения истории используется
-тот же `Redux`, куда записываются действия пользователя. **Саги** применяются для обработки глобальных действий - 
-фиксации изменений в истории (в реальном проекте это был бы запрос на бэкенд).
+The client-side implementation of the store is described in `/src/store/client`. Since this is a demo project, 
+the `Redux` store is used to record a user actions to save history. **Sagas** are used to handle global actions — 
+fixing changes in history (in a real project, this would be a request to the backend).
 
-Папка `/src/store/client` содержит логику, связанную с `React`.
-Экспортируются только провайдеры и хуки, оборачивающие использование селекторов и экшенов.
-Задача этих хуков — изолировать компоненты от прямого взаимодействия со стором.
+The `/src/store/client` folder contains logic related to `React`. Only providers and hooks are exported, wrapping the 
+usage of selectors and actions. The purpose of these hooks is to isolate components from direct interaction with the store.
 
-## Переиспользуемость и гибкость
+## Reusability and flexibility
 
-В текущей реализации проекта можно **полностью заменить** реализацию стора:
+In the current project implementation, it is possible to **completely replace** the store implementation:
 
-- Перейти на другой state-менеджер.
-- Перенести работу с тяжёлыми редьюсерами в **Service Worker**.
-- Полностью перенести управление состоянием на **бэкенд**.
+- Switch to another state manager.
+- Move heavy reducers to a **Service Worker**.
+- Completely transfer state management to the **backend**.
 
-При этом код `React` компонентов останется **неизменным**, что делает архитектуру гибкой и легко адаптируемой под различные задачи.
+At the same time, the `React` component code will remain **unchanged**, making the architecture flexible and easily adaptable to various tasks.
