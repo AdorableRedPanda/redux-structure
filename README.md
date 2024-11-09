@@ -112,3 +112,13 @@ In the current project implementation, it is possible to **completely replace** 
 - Completely transfer state management to the **backend**.
 
 At the same time, the `React` component code will remain **unchanged**, making the architecture flexible and easily adaptable to various tasks.
+
+## Development
+To start app in development mode:
+- Download [source code](https://github.com/AdorableRedPanda/redux-structure-demo)
+- Install dependencies `npm i`
+- Run dev-server `npm run dev`
+
+The application will be served at `localhost:8080`
+
+
